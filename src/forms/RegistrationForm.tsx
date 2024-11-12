@@ -3,6 +3,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import BtnArrow from '../svg/BtnArrow';
+import { useNavigate } from 'react-router-dom';
 
 interface FormData {
    fname: string;
@@ -17,18 +18,53 @@ const schema = yup
       fname: yup.string().required().label("Name"),
       lname: yup.string().required().label("Name"),
       email: yup.string().required().email().label("Email"),
-      password: yup.string().required().label("Password"),
-      cpassword: yup.string().required().label("Password"),
+      password: yup.string().required().min(6).label("Password"), // Ensuring password is at least 6 characters
+      cpassword: yup
+         .string()
+         .required()
+         .oneOf([yup.ref('password')], 'Passwords must match') // Ensure passwords match
+         .label("Confirm Password"),
    })
    .required();
 
 const RegistrationForm = () => {
+   const navigate = useNavigate();
+   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>({
+      resolver: yupResolver(schema),
+   });
 
-   const { register, handleSubmit, reset, formState: { errors }, } = useForm<FormData>({ resolver: yupResolver(schema), });
-   const onSubmit = () => {
-      const notify = () => toast('Registration successfully', { position: 'top-center' });
-      notify();
-      reset();
+   const onSubmit = async (data: FormData) => {
+      try {
+         // Send a POST request to your backend
+         const response = await fetch('http://localhost:5000/api/auth/register', {
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+               firstName: data.fname,
+               lastName: data.lname,
+               email: data.email,
+               password: data.password,
+            })
+            
+            ,
+         });
+
+         // Handle the response
+         if (response.ok) {
+            const result = await response.json();
+            toast.success('Registration successful', { position: 'top-center' });
+            navigate('/login');
+            reset(); // Reset the form after successful submission
+         } else {
+            const errorData = await response.json();
+            toast.error(errorData.message || 'Registration failed', { position: 'top-center' });
+         }
+      } catch (error) {
+         console.error('Error during registration:', error);
+         toast.error('An error occurred. Please try again later.', { position: 'top-center' });
+      }
    };
 
    return (
@@ -64,9 +100,12 @@ const RegistrationForm = () => {
             <input type="password" {...register("cpassword")} id="confirm-password" placeholder="Confirm Password" />
             <p className="form_error">{errors.cpassword?.message}</p>
          </div>
-         <button type="submit" className="btn btn-two arrow-btn">Sign Up<BtnArrow /></button>
+         <button type="submit" className="btn btn-two arrow-btn">
+            Sign Up
+            <BtnArrow />
+         </button>
       </form>
-   )
+   );
 }
 
-export default RegistrationForm
+export default RegistrationForm;
