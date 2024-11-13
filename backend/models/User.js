@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   lastName: {
-    type: String
+    type: String,
   },
   email: {
     type: String,
@@ -18,7 +18,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  careerPath: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'CareerPath', // Reference to the CareerPath model
+    required: false, // Set to true if the career path is mandatory
+  },
 });
+
 
 // Hash password before saving user
 userSchema.pre('save', async function (next) {
