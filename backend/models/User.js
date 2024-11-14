@@ -20,8 +20,8 @@ const userSchema = new mongoose.Schema({
   },
   careerPath: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'CareerPath', // Reference to the CareerPath model
-    required: false, // Set to true if the career path is mandatory
+    ref: 'CareerPath',
+    required: false, 
   },
 });
 

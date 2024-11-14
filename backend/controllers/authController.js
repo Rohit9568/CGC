@@ -11,7 +11,7 @@ exports.registerUser = async (req, res) => {
 
     // Create new user
     user = new User({ firstName,lastName, email, password });
-    console.log(user)
+    
     await user.save();
 
     // Generate token

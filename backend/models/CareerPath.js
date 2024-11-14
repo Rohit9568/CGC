@@ -11,8 +11,8 @@ const careerPathSchema = new mongoose.Schema({
   },
   modules: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Module',
+      type: String,
+    required: true,
     },
   ],
 });

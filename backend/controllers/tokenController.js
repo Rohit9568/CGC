@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 
 exports.validateToken = async (req, res) => {
     const { token } = req.body;
-console.log(token)
     // Check if token is provided
     if (!token) {
        return res.status(400).json({ message: "No token provided" });

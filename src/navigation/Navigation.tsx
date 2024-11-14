@@ -47,6 +47,7 @@ import StudentReview from '../pages/StudentReview';
 import StudentAttempt from '../pages/StudentAttempt';
 import StudentHistory from '../pages/StudentHistory';
 import StudentSetting from '../pages/StudentSetting';
+import Quiz from '../pages/Quiz';
 import NotFound from '../pages/NotFound';
 
 const AppNavigation = () => {
@@ -63,7 +64,8 @@ const AppNavigation = () => {
         <Route path="/home-eight" element={<HomeEight />} />
         <Route path="/courses" element={<Course />} />
         <Route path="/course-details" element={<CourseDetails />} />
-        <Route path="/lesson" element={<Lesson />} />
+        <Route path="/:uniqueCode" element={<Lesson />} />
+        <Route path="/quiz/:uniqueCode" element={<Quiz />} />
         <Route path="/about-us" element={<About />} />
         <Route path="/instructors" element={<Instructor />} />
         <Route path="/instructor-details" element={<InstructorDetails />} />

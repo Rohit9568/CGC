@@ -1,45 +1,27 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import courses from '../../data/inner-data/InnerCourseData';
+// redux/features/courseSlice.js
+import { createSlice } from '@reduxjs/toolkit';
 
-export interface Course {
-  id: number;
-  title: string;
-  thumb: string | undefined;
-  category: string;
-  rating: number;
-  desc: string;
-  price: number;
-  instructors: string;
-  skill_level: string;
-  price_type: string;
-  language: string;
-  popular?: string;
-}
-
-interface CourseState {
-  courses: Course[];
-  course: Course | null;
-}
-
-const initialState: CourseState = {
-  courses: courses,
-  course: null,
+// Initial state for courses
+const initialState = {
+  courses: [], // This will store the courses data
 };
 
-export const courseSlice = createSlice({
+// Create slice for courses
+const courseSlice = createSlice({
   name: 'courses',
   initialState,
   reducers: {
-    single_course: (state, action: PayloadAction<number>) => {
-      state.course = state.courses.find((p) => p.id === action.payload) || null;
+    setCourses: (state, action) => {
+      state.courses = action.payload; // Update the courses array in the state
     },
   },
 });
 
-export const { single_course } = courseSlice.actions;
+// Export the action
+export const { setCourses } = courseSlice.actions;
 
-// Selectors
-export const selectCourses = (state: { courses: CourseState }) => state?.courses?.courses;
-export const selectCourse = (state: { courses: CourseState }) => state?.courses?.course;
+// Selector to get courses from the Redux store
+export const selectCourses = (state) => state.courses.courses;  // Access courses from the state
 
+// Export the reducer to be added to the store
 export default courseSlice.reducer;

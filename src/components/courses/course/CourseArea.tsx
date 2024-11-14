@@ -4,10 +4,12 @@ import CourseSidebar from './CourseSidebar';
 import CourseTop from './CourseTop';
 import UseCourses from '../../../hooks/UseCourses';
 import { Link } from 'react-router-dom';
+import { fetchCourses } from '../../../api/courses.ts'; // Import the fetchCourses function
 
 const CourseArea = () => {
-
    const { courses, setCourses } = UseCourses();
+   const [loading, setLoading] = useState(true); // State to track loading
+   const [error, setError] = useState(null); // State to track errors
 
    const itemsPerPage = 12;
    const [itemOffset, setItemOffset] = useState(0);
@@ -19,18 +21,48 @@ const CourseArea = () => {
    const totalItems = courses.length;
 
    useEffect(() => {
-   }, [courses]);
+      const fetchData = async () => {
+         try {
+            setLoading(true);
+            const data = await fetchCourses(); // Fetch the courses data from the backend
+            setCourses(data); // Set the courses state with fetched data
+         } catch (error) {
+            setError(true); // Set the error state to true
+         } finally {
+            setLoading(false);
+         }
+      };
+      
+      fetchData(); // Call the fetch function on component mount
+   }, [setCourses]);
 
-   const handlePageClick = (event: { selected: number }) => {
+   const handlePageClick = (event) => {
       const newOffset = (event.selected * itemsPerPage) % courses.length;
       setItemOffset(newOffset);
    };
 
    const [activeTab, setActiveTab] = useState(0);
 
-   const handleTabClick = (index: number) => {
+   const handleTabClick = (index) => {
       setActiveTab(index);
    };
+
+   // Show loading state or error message if needed
+   if (loading) {
+      return <div>Loading...</div>;
+   }
+
+   if (error) {
+      return (
+         <div className="error-message all-courses-area section-py-120">
+            <h2>Sign in to get courses</h2>
+            <p>You need to be signed in to view the courses available. Please sign in or create an account to access this content.</p>
+            <Link to="/login" className="signin-link">
+               Sign In
+            </Link>
+         </div>
+      );
+   }
 
    return (
       <section className="all-courses-area section-py-120">
@@ -68,7 +100,7 @@ const CourseArea = () => {
                                        <p className="author">By <Link to="#">{item.instructors}</Link></p>
                                        <div className="courses__item-bottom">
                                           <div className="button">
-                                             <Link to={`/course-details/${item.id}`}>
+                                             <Link to={`/${item.uniqueCode}`}>
                                                 <span className="text">Enroll Now</span>
                                                 <i className="flaticon-arrow-right"></i>
                                              </Link>

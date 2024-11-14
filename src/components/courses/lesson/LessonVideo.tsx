@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Plyr from 'plyr';
 
-const LessonVideo = () => {
+const LessonVideo = ({videoUrl}) => {
 
    useEffect(() => {
       const player = new Plyr('#player');
