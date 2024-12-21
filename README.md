@@ -1,50 +1,112 @@
-# React + TypeScript + Vite
+# Sahayak
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Introduction
+**Sahayak** is a Smart India Hackathon 2024 project developed by **Team Error 404** from Rajiv Gandhi Institute of Petroleum Technology (RGIPT). This solution addresses **Problem Statement 1667**, focusing on integrating industry-relevant vocational training into elementary and secondary education curricula as per the **National Education Policy (NEP) 2020** guidelines.
 
-Currently, two official plugins are available:
+Sahayak aims to bridge the gap between traditional education and industry-relevant skills, offering a platform that guides students toward suitable vocational training, courses, and jobs based on their interests and aptitude.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Features
+- **Personalized Recommendations**: Suggests vocational courses and jobs based on user responses.
+- **Alignment with NEP 2020**: Ensures recommendations comply with the policy’s vision for holistic development.
+- **Interactive Questionnaires**: Engaging questions to understand user interests.
+- **Seamless Navigation**: Easy-to-use interface guiding users to their desired goals.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## Tech Stack
+### Frontend:
+- **React.js**: For building a dynamic and responsive user interface.
+- **CSS**: For styling and improving the visual appeal of the platform.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Backend:
+- **Node.js**: For server-side logic.
+- **Express.js**: For handling API requests.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Database:
+- **MongoDB**: For storing user data and vocational course/job information.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Other Tools:
+- **Socket.IO**: For real-time communication.
+- **Figma**: For UI/UX design.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+---
+
+## How It Works
+1. **User Interaction**:
+   - Users answer a series of questions.
+   - Responses are analyzed to identify interests and aptitudes.
+
+2. **Recommendation Engine**:
+   - Matches user inputs to relevant vocational courses and job opportunities.
+
+3. **Navigation**:
+   - Redirects users to detailed course/job descriptions with application links.
+
+---
+
+## Installation and Setup
+### Prerequisites:
+- **Node.js** and **npm** installed on your system.
+- **MongoDB** database setup.
+
+### Steps:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo/sahayak.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd sahayak
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm start
+   ```
+5. Access the platform at `http://localhost:3000`.
+
+---
+
+## Screenshots
+1. **Homepage**:
+   ![Homepage](./images/homepage.png)
+
+2. **Questionnaire**:
+   ![Questionnaire](./images/questionnaire.png)
+
+3. **Recommendations**:
+   ![Recommendations](./images/recommendations.png)
+
+*(Insert your screenshots in the `./images/` folder and adjust the paths accordingly.)*
+
+---
+
+## Team
+- **Rohit Sharma**: Backend Developer
+- **[Other Team Member Names]**: Roles
+
+---
+
+## Future Enhancements
+- Expand the database to include more vocational courses and jobs.
+- Incorporate AI for smarter recommendations.
+- Add multilingual support.
+- Deploy on a cloud platform for scalability.
+
+---
+
+## Deployment
+*Deployment is under process.* Stay tuned for updates!
+
+---
+
+## Contact
+For queries or collaborations, reach out to us:
+- **Email**: rs783070@gmail.com
+- **Phone**: 9568389164
+
