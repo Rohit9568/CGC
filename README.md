@@ -54,7 +54,7 @@ Sahayak aims to bridge the gap between traditional education and industry-releva
 ### Steps:
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/sahayak.git
+   git clone [https://github.com/Rohit9568/Sahayak-SIH24.git]
    ```
 2. Navigate to the project directory:
    ```bash
@@ -72,23 +72,11 @@ Sahayak aims to bridge the gap between traditional education and industry-releva
 
 ---
 
-## Screenshots
-1. **Homepage**:
-   ![Homepage](./images/homepage.png)
 
-2. **Questionnaire**:
-   ![Questionnaire](./images/questionnaire.png)
-
-3. **Recommendations**:
-   ![Recommendations](./images/recommendations.png)
-
-*(Insert your screenshots in the `./images/` folder and adjust the paths accordingly.)*
-
----
 
 ## Team
 - **Rohit Sharma**: Backend Developer
-- **[Other Team Member Names]**: Roles
+
 
 ---
 
